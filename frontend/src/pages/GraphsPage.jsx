@@ -15,7 +15,29 @@ export default function GraphsPage({ byMonth=[], expenseByCategory=[] }){
       </div>
     </div>
     {selected.includes('line') && <MonthlyChart byMonth={byMonth} />}
-    {selected.includes('bar') && (<div className="card" style={{marginTop:'1rem'}}><Chart chartType="Bar" data={barData} width="100%" height="300px" options={{ legend:{position:'top'} }} /></div>)}
-    {selected.includes('pie') && (<div className="card" style={{marginTop:'1rem'}}><Chart chartType="PieChart" data={pieData} width="100%" height="300px" options={{ legend:{position:'right'} }} /></div>)}
+    {selected.includes('bar') && (
+      <div className="card" style={{marginTop:'1rem'}}>
+        <Chart
+          chartType="Bar"
+          data={barData}
+          width="100%"
+          height="300px"
+          options={{ legend:{position:'top'}, // barData order: Despesas, Receitas
+                     colors:['#dc2626','#1d4ed8'] }}
+        />
+      </div>
+    )}
+    {selected.includes('pie') && (
+      <div className="card" style={{marginTop:'1rem'}}>
+        <Chart
+          chartType="PieChart"
+          data={pieData}
+          width="100%"
+          height="300px"
+          options={{ legend:{position:'right'}, // Pie shows only despesas by categoria
+                     colors:['#dc2626','#f87171','#fb7185','#fca5a5','#fecaca'] }}
+        />
+      </div>
+    )}
   </div>)
 }
